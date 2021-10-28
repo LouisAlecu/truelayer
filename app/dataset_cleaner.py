@@ -29,10 +29,6 @@ class DatasetCleaner:
         We can always go back to see which rows have been removed from the initial dataset.
 
         To get a full dataframe with the cleaned rows see method get_cleaned_dataframe.
-
-        Input:
-        Param:
-        Returns:
         """
         for check_col in columns:
             tracking_col_name = f"no_missing_{check_col}"
@@ -54,10 +50,6 @@ class DatasetCleaner:
         We can always go back to see which rows have been removed from the initial dataset.
 
         To get a full dataframe with the cleaned rows see method get_cleaned_dataframe.
-
-        Input:
-        Param:
-        Returns:
         """
         for check_col in columns:
             tracking_col_name = f"no_zero_values_{check_col}"

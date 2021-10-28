@@ -51,7 +51,6 @@ def calculate_columns_ratio(
     """
     Calculate num/denom and stores it into a column called ratio.
 
-    param: df: pandas dataframe that contains the 2 columns for which we calculate the ratio
     returns: df with added column called ratio
     """
     msg = "Column {} not in the dataframe columns."
@@ -70,7 +69,6 @@ def imdb_run_preproc_and_cleaner(df_imdb: pd.DataFrame) -> pd.DataFrame:
     """
     Running the preprocessing and cleaner for the imdb dataset
 
-    param: df_imdb: pandas dataframe containing the imdb dataset
     returns: cleaned df_imdb
     """
     # Get the imdb dataset
@@ -98,7 +96,6 @@ def wiki_run_preproc_and_cleaner(df_wiki: pd.DataFrame) -> pd.DataFrame:
     """
     Running the preprocessing and cleaner for the wiki dataset
 
-    param: df_wiki: pandas dataframe containing the wiki dataset
     returns: cleaned df_wiki
     """
     # Get the wiki dataset
@@ -127,7 +124,6 @@ def run_process() -> None:
     print("Running preproc and dataset cleaner for wiki")
     df_wiki = wiki_run_preproc_and_cleaner(df_wiki)
 
-    # Merge and calculate budget to revenue ratio
     print("Merging datasets")
     df_joined = merge_imdb_and_wiki(df_imdb, df_wiki)
     print("Calculating ratio budget to revenue: budget/revenue")
