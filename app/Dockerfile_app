@@ -1,0 +1,16 @@
+FROM python as base
+
+RUN mkdir /workdir
+COPY . /workdir
+
+RUN pip install -r /workdir/requirements.txt
+WORKDIR /workdir/
+
+FROM base as test
+CMD ["python", "-u", "test_orchestrator.py"]
+
+FROM base as xml_to_csv
+CMD ["python", "-u", "run_create_wiki_csv.py"]
+
+from base as prod
+CMD ["python", "-u", "run_app.py"]

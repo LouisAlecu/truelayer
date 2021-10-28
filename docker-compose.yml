@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+  truelayer_db:
+    build:
+      dockerfile: ./Dockerfile_truelayer_db
+      context: ./truelayer_db
+    depends_on:
+      - app_test
+    image: truelayer_db
+    container_name: truelayer_db_c1
+    networks:
+      - internal_network
+    volumes:
+      - ./truelayer_db:/docker-entrypoint-initdb.d/
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    expose: [5432]
+  app_test:
+    build:
+      dockerfile: ./Dockerfile_app
+      context: ./app
+      target: test
+    image: app_test
+    container_name: app_test_c1
+    networks:
+      - internal_network
+    volumes:
+      - ./data_imdb:/workdir/data_imdb/
+      - ./data_wikipedia:/workdir/data_wikipedia/
+  app_prod:
+    build:
+      dockerfile: ./Dockerfile_app
+      context: ./app
+      target: prod
+    tty: true 
+    deploy:
+      resources:
+        limits:
+          memory: 8000M
+        reservations:
+          memory: 2000M
+
+    depends_on:
+      - truelayer_db
+    image: app_prod
+    container_name: app_prod_c1
+    networks:
+      - internal_network
+    volumes:
+      - ./data_imdb:/workdir/data_imdb/
+      - ./data_wikipedia:/workdir/data_wikipedia/
+
+networks:
+  internal_network:
+    driver: bridge
