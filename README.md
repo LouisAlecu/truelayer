@@ -1,3 +1,8 @@
+The datasets we will refer to throughout the exercise:
+    https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-abstract.xml.gz
+    https://www.kaggle.com/rounakbanik/the-movies-dataset/version/7#movies_metadata.csv
+
+
 In the exercise it mentions nothing is installed, but I hope it is ok if I take for granted 
 tools like docker and python3 as being installed. If not: 
     docker: https://docs.docker.com/desktop/mac/install/
